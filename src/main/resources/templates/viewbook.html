@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All food items</title>
+    <link rel="stylesheet" th:href="@{/css/viewfood.css}">
+</head>
+<body>
+    <div class="nav">
+        <div class="nav1">
+          <img th:src="@{/img/C.png}" alt="img" />
+        </div>
+        <div class="nav2">
+            <input type="text" placeholder="Search for products" />
+          </div>
+      <div class="nav3">
+        <a th:href="@{/home}">Home Page</a>
+                  <a style="color: black" th:href="@{/viewFood}">All Food Items</a>
+        <a  th:href="@{/login}">Login</a>
+        <a th:href="@{/signup}">Sign up</a>
+      </div>
+      </div>
+      <div class="Home2">
+        <div class="Menubar">
+          <div class="class1" th:if="${foodList != null}">
+            <div class="image" th:each="food : ${foodList}">
+              <img th:src="@{'/img/food/'+ ${food.imageId}}" />
+              <div class="heading">
+                <h1 th:text="${food.name}"></h1>
+                <p th:text="${food.price}"></p>
+              </div>
+              <div class="box">
+<button id="but1" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Buy Now</button>
+ <button id="but2" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Add To Cart</button>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+</body>
+</html>
