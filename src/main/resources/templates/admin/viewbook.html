@@ -34,11 +34,12 @@
               <img th:src="@{'/img/book/'+ ${book.imageId}}" />
               <div class="heading">
                 <h1 th:text="${book.name}"></h1>
+                <h6 th:text="${book.author}"></h6>
                 <p th:text="${book.price}"></p>
               </div>
               <div class="box">
-<button id="but1" type="button" th:onclick="'location.href=\'' + @{/admin/updatebook/{id}(id=${book.id})} + '\''">Update</button>
- <button id="but2" type="button" th:onclick="'location.href=\'' + @{/admin/deletebook/{id}(id=${book.id})} + '\''">Delete</button>
+<button id="but1" type="button" th:onclick="'location.href=\'' + @{/admin/updatebook/{id}(id=${book.id})} + '\''"><i class="fa-solid fa-pen-to-square"></i></button>
+ <button id="but2" type="button" th:onclick="'location.href=\'' + @{/admin/deletebook/{id}(id=${book.id})} + '\''"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
         </div>

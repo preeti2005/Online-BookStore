@@ -75,7 +75,9 @@
     background-size: 100% 100%;
     background-position: center;
 }
-
+.home{
+	height: auto;
+}
 .book{
     height: 15vh;
     width: 100%;
@@ -97,7 +99,7 @@
 }
 .image{
     border-radius: 4%;
-    border: 1px solid rgb(209, 205, 205);
+    border: 1px solid rgb(228, 226, 226);
     width: 20%;
     height:55vh ;
     display: flex;
@@ -117,6 +119,7 @@
     border-radius: 8px 8px 0px 0px;
 }
 .heading{
+	padding-top: 10px;
     width: 95%;
 }
 .heading h1{
@@ -128,15 +131,18 @@
     height: 4vh;
 }
 
-/* buy and add to cart button */
 .box #but1, #but2{
-    /* background-color: grey; */
-    /* color: white; */
+    background-color: rgb(197, 2, 2);
+   color: white;
     height: 6vh;
     width: 36%;
     border: 1px solid rgb(216, 214, 214);
     /* border: none; */
-    border-radius: 8%;
+    border-radius: 7%;
+}
+.box  #but2{
+	   background-color: rgb(248, 189, 0);
+    color: white;
 }
 .nav3 a:hover{
     color: rgb(197, 2, 2);

@@ -54,7 +54,7 @@ body {
     cursor: pointer;
 }
 .nav ul{
-    width: 400px;
+    width: 450px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;

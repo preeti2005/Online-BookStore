@@ -28,24 +28,28 @@
 			<div class="sub-container1"></div>
 		</div>
 	</div>
-
-	<div class="Home2">
+	
+	<div class="home">
 		<div class="book">
 			<h1>Best Selling Titles</h1>
 		</div>
-		<div class="bookbar">
-			<div class="class1" th:if="${bookList != null}">
-				<div class="image" th:each="book : ${bookList}">
-					<img th:src="@{'/img/book'+ ${book.imageId}}" />
-					<div class="heading">
-						<h1 th:text="${book.name}"></h1>
-						<p th:text="${book.price}"></p>
-					</div>
-					<div class="box">
-						<button id="but1" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Buy
-							Now</button>
-						<button id="but2" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Add To
-							Cart</button>
+		<div class="home">
+			<div class="bookbar">
+				<div class="class1" th:if="${bookList != null}">
+					<div class="image" th:each="book : ${bookList}">
+						<img th:src="@{'/img/book/'+ ${book.imageId}}" />
+						<div class="heading">
+							<h1 th:text="${book.name}"></h1>
+							<p th:text="${book.price}"></p>
+						</div>
+						<div class="box">
+							<button id="but1" type="button"
+								th:onclick="'location.href=\'' + @{/customer/cart/add/{id}(id=${book.id})t} + '\''">Buy
+								Now</button>
+							<button id="but2" type="button"
+								th:onclick="'location.href=\'' + @{/customer/cart/add/{id}(id=${book.id})} + '\''">Add
+								To Cart</button>
+						</div>
 					</div>
 				</div>
 			</div>

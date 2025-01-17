@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +33,7 @@
     </div>
 
     <div class="home">
-      <div class="Menu">
+      <div class="book">
         <h1>Best Selling Titles</h1>
       </div>
       <div class="bookbar">
@@ -44,14 +45,13 @@
                 <p th:text="${book.price}"></p>
               </div>
               <div class="box">
-<button id="but1" type="button" th:onclick="'location.href=\'' + @{/customer/cart/add/{id}(id=${book.id})t} + '\''">Buy Now</button>
- <button id="but2" type="button" th:onclick="'location.href=\'' + @{/customer/cart/add/{id}(id=${book.id})} + '\''">Add To Cart</button>
+
+                  <form th:action="@{/customer/cart/add/{id}(id=${book.id})}" method="get">
+                      <button id="but1" type="submit">Add To Cart</button>
+                  </form>
               </div>
             </div>
         </div>
-        
-      
-       
           </div>
         </div>
     

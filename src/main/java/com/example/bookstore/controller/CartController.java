@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.bookstore.entity.User;
+import com.example.bookstore.exception.UserNotFoundException;
 import com.example.bookstore.services.CartService;
 import com.example.bookstore.services.OrderService;
 import com.example.bookstore.services.UserService;
@@ -27,16 +28,18 @@ public class CartController {
 	    private OrderService orderService;
 	    
 	    @GetMapping("/customer/cart/add/{id}")
-	    public String addItemToCart(@PathVariable("id")String bookId,
-	                                RedirectAttributes redirect,
-	                                HttpServletResponse resp,HttpServletRequest req) throws Exception {
-	    	//Default Quantity to add in cart
-	    	int quantity = 1;
-	    	
-	    	User user = userService.getByCookieId(resp, req);
-	        cartService.addItemToCart(user, Integer.parseInt(bookId),quantity);
-	        return "customer/cart"; // Redirect to the cart page
-	    }
+		public String addItemToCart(@PathVariable("id") String bookId,
+									RedirectAttributes redirect,
+									HttpServletResponse resp, HttpServletRequest req) throws Exception {
+			int quantity = 1;
+			User user = userService.getByCookieId(resp, req);
+			if (user == null) {
+				throw new UserNotFoundException();
+			}
+			cartService.addItemToCart(user, Integer.parseInt(bookId), quantity);
+			return "redirect:/customer/cart";
+		}
+
 	 // Decrease quantity of an item in the cart
 	    @GetMapping("/customer/cart/decrease/{itemId}")
 	    public String decreaseItemQuantity(@PathVariable("itemId") int itemId,

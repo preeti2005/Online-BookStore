@@ -114,7 +114,7 @@ public class HomePageController {
     	 if(user.getRole() == Role.admin)
     	 return "/admin/adminhomepage";  //return to admin homepage
     	 if(user.getRole() == Role.customer)
-    	 return "/customer/home"; //return to customer homepage
+    	 return "customer/customerhomepage"; //return to customer homepage
     		 
     	 return "/"; //return to  homepage
      }
