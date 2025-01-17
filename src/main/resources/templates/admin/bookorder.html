@@ -4,31 +4,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Food Orders</title>
-    <link rel="stylesheet" th:href="@{/css/admin/foodorder.css}" />
+    <title>All Book Orders</title>
+    <link rel="stylesheet" th:href="@{/css/admin/bookorder.css}" />
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}" />
   </head>
   <body>
-    <!-- Navigation Bar -->
+   <!-- Nav bar-->
     <div class="nav">
-      <div class="nav1">
-        <img th:src="@{/img/C.png}" alt="Logo" />
-      </div>
-      <div class="nav2">
-        <input type="text" placeholder="Search for products" />
-      </div>
-      <div class="nav3">
-        <a th:href="@{/admin/login}">Home Page</a>
-        <a th:href="@{/admin/addfood}">Add Food Menu</a>
-        <a th:href="@{/admin/viewfood}">View Food</a>
-        <a style="color: black;" th:href="@{/admin/foodorder}">All Orders</a>
-        <a th:href="@{/admin/profile}"><i class="fa-regular fa-circle-user"></i></a>
-      </div>
-    </div>
+        <!-- Left-aligned search container -->
+        <div class="search-container">
+             <span class="title"><a th:href="@{/admin/adminhomepage}">Book Store</a></span>
+            <input type="text" class="search-input" placeholder="Search books">
+            <button class="search-button">Search</button>
+        </div>
+        <!-- Right-aligned navigation menu -->
+        <ul>
+             <li><a th:href="@{/admin/viewbook}">Books List</a></li>
+                 <li><a th:href="@{/admin/addbook}">New Book Register</a></li>
+                 <li><a th:href="@{/admin/bookorder}">All Orders</a></li>
+                 <li><a th:href="@{/admin/adminprofile}"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </div>   
 
     <!-- Page Header -->
     <div class="food-text">
-      <h1>All Food Orders</h1>
+      <h1>All Orders</h1>
 	    </div>
 
     <!-- Orders Table -->
@@ -39,7 +39,7 @@
             <tr>
               <th>Username</th>
               <th>Order No</th>
-              <th>Food Item</th>
+              <th>Book</th>
               <th>Price (RS.)</th>
               <th>Qty</th>
               <th>Total</th>
@@ -51,8 +51,8 @@
             <tr th:each="order : ${orders}">
               <td th:text="${order.user.username}"></td>
               <td th:text="${order.id}"></td>
-              <td th:text="${order.food.name}"></td>
-              <td th:text="${order.food.price}"></td>
+              <td th:text="${order.book.name}"></td>
+              <td th:text="${order.book.price}"></td>
               <td th:text="${order.quantity}"></td>
               <td th:text="${order.amount}"></td>
               <td>

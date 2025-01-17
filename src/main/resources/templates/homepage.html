@@ -1,56 +1,108 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" th:href="@{/css/homepage.css}" />
-    <title>Home Page</title>
-  </head>
-  <body>
-    <div class="Home">
-      <div class="nav">
-        <div class="nav1">
-          <img th:src="@{/img/logo.jpg}" alt="img" />
-        </div>
-        <div class="nav2">
-          <input type="text" placeholder="Search for products" />
-        </div>
-        <div class="nav3">
-          <a th:href="@{/home}">Home Page</a>
-          <a th:href="@{/viewFood}">All Food Items</a>
-          <a th:href="@{/login}">Login</a>
-          <a th:href="@{/signup}">Sign up</a>
-        </div>
-      </div>
-      <div class="container">
-        <h1>Canteen Management System</h1>
-        <p th:if="${loginStatus != null}">[[${loginStatus}]]</p>
-      </div>
-    </div>
-  <div class="Home2">
-      <div class="Menu">
-        <h1>All food items</h1>
-      </div>
-      <div class="Menubar">
-          <div class="class1" th:if="${foodList != null}">
-            <div class="image" th:each="food : ${foodList}">
-              <img th:src="@{'/img/food'+ ${food.imageId}}" />
-              <div class="heading">
-                <h1 th:text="${food.name}"></h1>
-                <p th:text="${food.price}"></p>
-              </div>
-              <div class="box">
-<button id="but1" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Buy Now</button>
- <button id="but2" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Add To Cart</button>
-              </div>
-            </div>
-        </div>
-      
-       
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Book Store</title>
+	<link rel="stylesheet" th:href="@{/css/homepage.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<!-- Nav bar-->
+		<div class="nav">
+			<!-- Left-aligned search container -->
+			<div class="search-container">
+				<span class="title"><a th:href="@{/}">Book Store</a></span>
+				<input type="text" class="search-input" placeholder="Search books">
+				<button class="search-button">Search</button>
+			</div>
+			<!-- Right-aligned navigation menu -->
+			<ul>
+				<li><a th:href="@{/login}"><i class="fa-solid fa-user"></a></i></li>
+			</ul>
+		</div>
+		<div class="sub-container">
+			<div class="sub-container1"></div>
+		</div>
+	</div>
+
+	<div class="Home2">
+		<div class="book">
+			<h1>Best Selling Titles</h1>
+		</div>
+		<div class="bookbar">
+			<div class="class1" th:if="${bookList != null}">
+				<div class="image" th:each="book : ${bookList}">
+					<img th:src="@{'/img/book'+ ${book.imageId}}" />
+					<div class="heading">
+						<h1 th:text="${book.name}"></h1>
+						<p th:text="${book.price}"></p>
+					</div>
+					<div class="box">
+						<button id="but1" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Buy
+							Now</button>
+						<button id="but2" type="button" th:onclick="'location.href=\'' + @{/login} + '\''">Add To
+							Cart</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="sub-footer">
+			<div class="footer-part1">
+				<div class="footer-heading">
+					<i class="fa fa-book" aria-hidden="true"></i>
+					<span>BookStore</span>
+				</div>
+				<p>Discover a world of stories, knowledge, and inspiration. Explore our carefully curated collection and
+					let your next great adventure begin here. Happy reading!</p>
+			</div>
+
+			<div class="footer-part1">
+				<div class="footer-heading">
+					<span>Contact</span>
+				</div>
+				<div class="footer-contact">
+					<li><i class="fa fa-envelope" aria-hidden="true"></i>
+						preetigurung711@gmail.com</li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i>
+						9700000000</li>
+					<li><i class="fa fa-map-marker" aria-hidden="true"></i>
+						Butwal,Nepal</li>
+					<li><i class="fa fa-mobile" aria-hidden="true"></i>
+						071 562709</li>
+				</div>
+			</div>
+			<div class="footer-part1">
+				<div class="footer-heading">
+					<span>Sign Up</span>
+				</div>
+				<div class="sign">
+					<input type="email" name="" id="sign" placeholder="Enter Your Email">
+					<button type="submit">Submit</button>
+				</div>
+				<div class="icon">
+					<li><i class="fa-brands fa-facebook-f"></i></li>
+					<li><i class="fab fa-twitter"></i>
+					</li>
+					<li><i class='far fa-comment'></i>
+					</li>
+					<li><i class="fab fa-google-plus-g"></i></li>
+					<li><i class="fab fa-instagram"></i>
+					</li>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copy-right">
+		<h1>© Copyright 2024 Made with <i class="fa-solid fa-heart"></i> By Preeti Gurung</h1>
+	</div>
+
+</body>
+
 </html>

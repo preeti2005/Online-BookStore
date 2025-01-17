@@ -14,7 +14,7 @@ public class User {
 	private String username;
 	private String password;
 	@Column(unique = true)
-	private String phone;
+	private String email;
 	@Enumerated(value = EnumType.STRING)
 	private Role role;
 	
@@ -42,11 +42,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getPhone() {
-		return phone;
+	public String getEmail() {
+		return email;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public Role getRole() {
 		return role;
@@ -74,7 +74,7 @@ public class User {
 	return 	"Id :"+this.id +"/n"+
 	    "Username :"+this.username +"\n"+
 	    "Password :"+this.password+"\n"+
-	    "Phone :"+this.phone+"\n"+
+	    "Email :"+this.email+"\n"+
 	    "role :"+this.role+"\n"+
 	    "cookieId :"+this.cookieId+"\n"+
 	    "imageId :"+this.imageId;

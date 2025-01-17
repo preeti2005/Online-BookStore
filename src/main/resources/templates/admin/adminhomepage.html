@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,45 +8,77 @@
     <title>Admin Login</title>
   </head>
   <body>
-    <div class="Home">
-      <div class="nav">
-        <div class="nav1">
-          <img th:src="@{/img/logo.jpg}" alt="img" />
-        </div>
-        <div class="nav2">
-          <input type="text" placeholder="Search for products" />
-        </div>
-        <div class="nav3">
-          <a th:href="@{/admin/login}">Home Page</a>
-          <a th:href="@{/admin/addbook}">Add Food Menu</a>
-          <a th:href="@{/admin/viewbook}">View Food</a>
-          <a th:href="@{/admin/bookorder}">All Order</a>
-          <a th:href="@{/admin/adminprofile}" ><i class="fa-regular fa-circle-user"></i></a>
-        </div>
-      </div>
-      <div class="container">
-        <h1>Canteen Management System</h1>
-      </div>
-    </div>
-    <div class="Home2">
-      <div class="Menu">
-        <h1>All food items</h1>
-      </div>
-        <div class="Menubar">
-          <div class="class1" th:if="${foodList != null}">
-            <div class="image" th:each="food : ${foodList}">
-              <img th:src="@{'/img/'+ ${food.imageId}}" />
-              <div class="heading">
-                <h1 th:text="${food.name}"></h1>
-                <p th:text="${food.price}"></p>
-              </div>
-              <div class="box">
-<button id="but1" type="button">Buy now</button>
- <button id="but2" type="button">Add to cart</button>
-              </div>
+    <div class="container">
+    <!-- Nav bar-->
+        <div class="nav">
+        <!-- Left-aligned search container -->
+            <div class="search-container">
+                <span class="title"><a th:href="@{/admin/adminhomepage}">Book Store</a></span>
+                <input type="text" class="search-input" placeholder="Search books">
+                <button class="search-button">Search</button>
             </div>
+        <!-- Right-aligned navigation menu -->
+            <ul>
+                 <li><a th:href="@{/admin/viewbook}">Book List</a></li>
+                 <li><a th:href="@{/admin/addbook}">New Book Register</a></li>
+                 <li><a th:href="@{/admin/bookorder}">All Orders</a></li>
+                 <li><a th:href="@{/admin/adminprofile}"><i class="fa-solid fa-user"></i></a></li>
+            </ul>
+         </div>
+        <div class="sub-container">
+            <div class="sub-container1"></div>
         </div>
-      </div>
     </div>
+      
+      <div class="footer">
+		<div class="sub-footer">
+			<div class="footer-part1">
+				<div class="footer-heading">
+					<i class="fa fa-book" aria-hidden="true"></i>
+					<span>BookStore</span>
+				</div>
+				<p>Discover a world of stories, knowledge, and inspiration. Explore our carefully curated collection and
+					let your next great adventure begin here. Happy reading!</p>
+			</div>
+
+			<div class="footer-part1">
+				<div class="footer-heading">
+					<span>Contact</span>
+				</div>
+				<div class="footer-contact">
+					<li><i class="fa fa-envelope" aria-hidden="true"></i>
+						preetigurung711@gmail.com</li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i>
+						9700000000</li>
+					<li><i class="fa fa-map-marker" aria-hidden="true"></i>
+						Butwal,Nepal</li>
+					<li><i class="fa fa-mobile" aria-hidden="true"></i>
+						071 562709</li>
+				</div>
+			</div>
+			<div class="footer-part1">
+				<div class="footer-heading">
+					<span>Sign Up</span>
+				</div>
+				<div class="sign">
+					<input type="email" name="" id="sign" placeholder="Enter Your Email">
+					<button type="submit">Submit</button>
+				</div>
+				<div class="icon">
+					<li><i class="fa-brands fa-facebook-f"></i></li>
+					<li><i class="fab fa-twitter"></i>
+					</li>
+					<li><i class='far fa-comment'></i>
+					</li>
+					<li><i class="fab fa-google-plus-g"></i></li>
+					<li><i class="fab fa-instagram"></i>
+					</li>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copy-right">
+		<h1>© Copyright 2024 Made with <i class="fa-solid fa-heart"></i> By Preeti Gurung</h1>
+	</div>
   </body>
 </html>

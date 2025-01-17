@@ -1,96 +1,82 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign up</title>
-    <link rel="stylesheet" href="css/signup.css" />
-  </head>
-  <body>
-    <div class="nav">
-      <div class="nav1">
-        <img src="./img/C.png" alt="img" />
-      </div>
-      <div class="nav2">
-        <input type="text" placeholder="Search for products" />
-      </div>
-      <div class="nav3">
-        <a th:href="@{/home}">Home Page</a>
-                  <a th:href="@{/viewFood}">All Food Items</a>
-        <a th:href="@{/login}">Login</a>
-        <a style="color: black" th:href="@{/signup}">Sign up</a>
-      </div>
-    </div>
-    <div class="container">
-      <div class="container-sub">
-        <h2>Sign up</h2>
-        <form th:action="@{/signup/user}" method="post" enctype="multipart/form-data"
-         onsubmit="return handleSubmit(event)" th:object="${user}">
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Enter your username"  th:field="*{username}" 
-              required
-            />
-            <p class="error" id="usernameErr" th:text="${usernameErr}"></p>
-          </div>
 
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password" th:field="*{password}"
-              required
-            />
-                      <p class="error" id="passwordErr" th:text="${passwordErr}"></p>
-          </div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Sign up</title>
+	<link rel="stylesheet" href="css/signup.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
 
-          <div class="form-group">
-            <label for="email">Phone number:</label>
-            <input
-              type="number"
-              id="number"
-              name="number"
-              placeholder="Enter your phone number" th:field="*{phone}"
-              required
-            />
-          <p class="error" id="phoneErr" th:text="${phoneErr}"></p>
-          </div>
+<body>
+	<!-- Nav bar-->
+	<div class="nav">
+		<!-- Left-aligned search container -->
+		<div class="search-container">
+			<span class="title"><a th:href="@{/}">Book Store</a></span>
+			<input type="text" class="search-input" placeholder="Search books">
+			<button class="search-button">Search</button>
+		</div>
+		<!-- Right-aligned navigation menu -->
+		<ul>
+			<li><a th:href="@{/login}"><i class="fa-solid fa-user"></a></i></li>
+		</ul>
+	</div>
 
-          <div class="form-group">
-            <label for="confirm-password">Confirm Password:</label>
-            <input
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              placeholder="Confirm your password" 
-              required
-            />
-            <p class="error" id="confirmPasswordErr"></p>
-          </div>
-          
-          <div class="form-group">
-			  <label for="userImage">Select Image:</label>
-			  <input type="file" name="userImage" class="userImage" placeholder="Choose File"
-			  accept="image/*" />
-			  <p class="error" id="imageErr" th:text="${imageErr}"></p>
-		  </div>
+	<div class="container">
+		<div class="container-sub">
+			<h2>Sign up</h2>
+			<form th:action="@{/signup/user}" method="post" enctype="multipart/form-data"
+				onsubmit="return handleSubmit(book)" th:object="${user}">
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="text" id="email" name="email" placeholder="Enter your Email" th:field="*{email}"
+						required />
+					<p class="error" id="emailErr" th:text="${emailErr}"></p>
+				</div>
+				<div class="form-group">
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" placeholder="Enter your username"
+						th:field="*{username}" required />
+					<p class="error" id="usernameErr" th:text="${usernameErr}"></p>
+				</div>
 
-          <div class="form-group">
-            <button type="submit" disabled>Sign Up</button>
-            <p class="login">
-              Already have an account? <a th:href="@{/login}"> Login</a>
-            </p>
-          </div>
-        </form>
-      </div>
-    </div>
-    <script src="/javascript/signup.js"></script>
-  </body>
+				<div class="form-group">
+					<label for="password">Password:</label>
+					<input type="password" id="password" name="password" placeholder="Enter your password"
+						th:field="*{password}" required />
+					<p class="error" id="passwordErr" th:text="${passwordErr}"></p>
+				</div>
+
+
+				<div class="form-group">
+					<label for="confirm-password">Confirm Password:</label>
+					<input type="password" id="confirm-password" name="confirm-password"
+						placeholder="Confirm your password" required />
+					<p class="error" id="confirmPasswordErr"></p>
+				</div>
+
+				<div class="form-group">
+					<label for="userImage">Select Image:</label>
+					<input type="file" name="userImage" class="userImage" placeholder="Choose File" accept="image/*" />
+					<p class="error" id="imageErr" th:text="${imageErr}"></p>
+				</div>
+
+				<div class="form-group">
+					<button type="submit">Sign Up</button>
+					<p class="login">
+						Already have an account? <a th:href="@{/login}"> Login</a>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+	<script src="/javascript/signup.js"></script>
+</body>
+
 </html>

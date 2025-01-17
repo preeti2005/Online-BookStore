@@ -4,26 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Canteen Cart</title>
+    <title>Cart</title>
     <link rel="stylesheet" th:href="@{/css/customer/cart.css}">
+        <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}">
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Nav bar-->
     <div class="nav">
-        <div class="nav1">
-            <img th:src="@{/img/C.png}" alt="Logo">
+        <!-- Left-aligned search container -->
+        <div class="search-container">
+             <span class="title"><a th:href="@{/customer/home}">Book Store</a></span>
+            <input type="text" class="search-input" placeholder="Search books">
+            <button class="search-button">Search</button>
         </div>
-        <div class="nav2">
-            <input type="text" placeholder="Search for products">
-        </div>
-        <div class="nav3">
-            <a th:href="@{/customer/home}">Home Page</a>
-            <a th:href="@{/customer/viewFood}">All Food Items</a>
-            <a style="color: black;" th:href="@{/customer/cart}">Cart</a>
-                        <a th:href="@{/customer/foodorder}">My Orders</a>
-            <a th:href="@{/customer/profile}">My Profile</a>
-        </div>
-    </div>
+        <!-- Right-aligned navigation menu -->
+        <ul>
+             <li><a th:href="@{/customer/viewbook}">Books List</a></li>
+             <li><a th:href="@{/customer/bookorder}">My Books List</a></li>
+                 <li><a th:href="@{/customer/cart}"><i class="fa-solid fa-cart-shopping"></i></a> <a  th:href="@{/customer/bookorder}"></li>
+                 <li><a th:href="@{/customer/profile}"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </div>   
 
     <!-- Shopping Cart Section -->
     <div class="shopping-cart">
@@ -41,7 +42,7 @@
                 <!-- Loop through cart items dynamically -->
                 <tr th:each="item : ${cart.items}">
                     <td>
-                        <span th:text="${item.food.name}">Food Name</span>
+                        <span th:text="${item.book.name}">Book Name</span>
                     </td>
                     <td>
                      <div class="quantity">
@@ -52,8 +53,8 @@
         <button th:onclick="'location.href=\'' + @{/customer/cart/increase/{id}(id=${item.id})} + '\''">+</button>
     </div>
                     </td>
-                    <td th:text="'@Rs ' + ${item.food.price}">@Rs 0</td>
-                    <td th:text="'Rs ' + (${item.food.price} * ${item.quantity})">Rs 0</td>
+                    <td th:text="'@Rs ' + ${item.book.price}">@Rs 0</td>
+                    <td th:text="'Rs ' + (${item.book.price} * ${item.quantity})">Rs 0</td>
                     <td>
                         <button class="delete" th:onclick="'location.href=\'' + @{/customer/cart/delete/{id}(id=${item.id})} + '\''">🗑️</button>
                     </td>

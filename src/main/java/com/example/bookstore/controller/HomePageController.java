@@ -33,7 +33,7 @@ public class HomePageController {
 	private BookService bookService;
 	
 	//return homepage
-		@GetMapping("/home")
+		@GetMapping("/")
 		public String getHomePage(Model model)
 		{
 			model.addAttribute("BookList", bookService.getAllBook());
@@ -46,7 +46,7 @@ public class HomePageController {
 		public String getViewBookPage(Model model)
 		{
 			model.addAttribute("bookList", bookService.getAllBook());
-	        return "/viewbook.html";
+	        return "viewbook";
 		}
 		
 		//get signup page
@@ -73,12 +73,12 @@ public class HomePageController {
 	{
 		
 		if((userService.isUsernameExists(user.getUsername()) == true)    //check if user details already exists
-			|| (userService.isPhoneExists(user.getPhone()) == true)	)
+			|| (userService.isEmailExists(user.getEmail()) == true)	)
 	{
 		if((userService.isUsernameExists(user.getUsername()) == true))
 			redirect.addFlashAttribute("usernameErr","Username already exists");
-		if(userService.isPhoneExists(user.getPhone()) == true)
-			redirect.addFlashAttribute("phoneErr","Phone already exists");
+		if(userService.isEmailExists(user.getEmail()) == true)
+			redirect.addFlashAttribute("emailErr","Email already exists");
 		
 		redirect.addFlashAttribute("user",user);
 		return "redirect:/signup";  //return to the signup page 
@@ -112,14 +112,14 @@ public class HomePageController {
     	 model.addAttribute("user",user);
     	 
     	 if(user.getRole() == Role.admin)
-    	 return "admin/adminlogin";  //return to admin homepage
+    	 return "/admin/adminhomepage";  //return to admin homepage
     	 if(user.getRole() == Role.customer)
-    	 return "redirect:/customer/home"; //return to customer homepage
+    	 return "/customer/home"; //return to customer homepage
     		 
-    	 return "/home"; //return to  homepage
+    	 return "/"; //return to  homepage
      }
      else
-        return "/login.html";      //return to the log in page
+        return "login";      //return to the log in page
 	}
 	
 	
@@ -154,6 +154,6 @@ public class HomePageController {
 	public String logoutUser(HttpServletResponse resp,HttpServletRequest req)
 	{
 		authService.logoutByCookie(req,resp);   
-        return "redirect:/home";		
+        return "redirect:/";		
 	}
 }

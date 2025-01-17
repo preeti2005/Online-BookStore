@@ -38,15 +38,15 @@ public class CustomerPageController {
 
 	@GetMapping("/customer/home")
 	public String getCustomerHomepage(Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// Layer 1 Validation for role authorization
+		// Layer 1 Validation for role authorization63
 		if (authService.identifyUserRole(resp, req) != Role.customer)
 			throw new OnlyCustomerIsAuthorizedException();
 
 		model.addAttribute("bookList", bookService.getAllBook());
-		return "/customer/customerhomepage.html";
+		return "customer/customerhomepage";
 	}
 
-	@GetMapping("/customer/viewBook")
+	@GetMapping("/customer/viewbook")
 	public String getCustomerViewBookPage(HttpServletRequest req, HttpServletResponse resp, Model model)
 			throws Exception {
 		// Layer 1 Validation for role authorization
@@ -54,7 +54,7 @@ public class CustomerPageController {
 			throw new OnlyCustomerIsAuthorizedException();
 
 		model.addAttribute("bookList", bookService.getAllBook());
-		return "/customer/viewBook.html";
+		return "customer/viewbook";
 	}
 
 	@GetMapping("/customer/cart")
@@ -67,7 +67,7 @@ public class CustomerPageController {
 		if (user == null)
 			throw new UserNotFoundException();
 		model.addAttribute("cart", cartService.getCartByUser(user));
-		return "/customer/cart.html";
+		return "customer/cart";
 	}
 
 	@GetMapping("/customer/profile")

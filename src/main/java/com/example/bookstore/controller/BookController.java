@@ -25,7 +25,7 @@ public class BookController {
 
 //add new book item to the database 
 	@PostMapping("/admin/addbook/save")
-	public String saveNewFood(@ModelAttribute Book book, @RequestParam(name = "bookImage") MultipartFile file,
+	public String saveNewBook(@ModelAttribute Book book, @RequestParam(name = "bookImage") MultipartFile file,
 			Model model) {
 
 		Book newBook = bookService.addNewBook(book, file);
@@ -41,7 +41,7 @@ public class BookController {
 
 //update book
 	@GetMapping("/admin/updatebook/{id}")
-	public String showUpdateFood(@PathVariable("id") String id, Model model) {
+	public String showUpdateBook(@PathVariable("id") String id, Model model) {
 		int bookId = Integer.parseInt(id);
 		Book book = bookService.getBook(bookId);
 		if (book != null) {

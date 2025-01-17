@@ -5,35 +5,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All Food Orders</title>
-    <link rel="stylesheet" th:href="@{/css/admin/foodorder.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/bookorder.css}" />
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}" />
   </head>
   <body>
-    <!-- Navigation Bar -->
+   <!-- Nav bar-->
     <div class="nav">
-      <div class="nav1">
-        <img th:src="@{/img/C.png}" alt="Logo" />
-      </div>
-      <div class="nav2">
-        <input type="text" placeholder="Search for products" />
-      </div>
-        <div class="nav3">
-            <a th:href="@{/customer/home}">Home Page</a>
-            <a th:href="@{/customer/viewFood}">All Food Items</a>
-            <a  th:href="@{/customer/cart}">Cart</a>
-            <a style="color: black;" th:href="@{/customer/foodorder}">My Orders</a>
-            <a th:href="@{/customer/profile}">My Profile</a>
+        <!-- Left-aligned search container -->
+        <div class="search-container">
+             <span class="title"><a th:href="@{/customer/home}">Book Store</a></span>
+            <input type="text" class="search-input" placeholder="Search books">
+            <button class="search-button">Search</button>
         </div>
-    </div>
+        <!-- Right-aligned navigation menu -->
+        <ul>
+             <li><a th:href="@{/customer/viewbook}">Books List</a></li>
+             <li><a th:href="@{/customer/bookorder}">My Books List</a></li>
+                 <li><a th:href="@{/customer/cart}"><i class="fa-solid fa-cart-shopping"></i></a> <a  th:href="@{/customer/bookorder}"></li>
+                 <li><a th:href="@{/customer/profile}"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </div>   
 
     <!-- Page Header -->
     <div class="food-text">
-      <h1>My Food Orders</h1>
+      <h1>My Orders</h1>
 	    </div>
 
     <!-- Orders Table -->
     <div class="table-container">
-      <form th:action="@{/admin/foodOrder}" method="post">
+      <form th:action="@{/admin/bookOrder}" method="post">
         <table>
           <thead>
             <tr>
@@ -46,8 +46,8 @@
           </thead>
           <tbody th:if="${orders != null}">
             <tr th:each="order : ${orders}">
-              <td th:text="${order.food.name}"></td>
-              <td th:text="${order.food.price}"></td>
+              <td th:text="${order.book.name}"></td>
+              <td th:text="${order.book.price}"></td>
               <td th:text="${order.quantity}"></td>
               <td th:text="${order.amount}"></td>
               <td th:text="${order.orderStatus}">

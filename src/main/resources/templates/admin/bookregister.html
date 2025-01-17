@@ -4,53 +4,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Food Item</title>
-    <link rel="stylesheet" th:href="@{/css/admin/addfood.css}" />
+    <title>Book Register</title>
+    <link rel="stylesheet" th:href="@{/css/admin/bookregister.css}" />
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}">
   </head>
   <body>
+   <!-- Nav bar-->
     <div class="nav">
-      <div class="nav1">
-        <img th:src="@{/img/C.png}" alt="img" />
-      </div>
-      <div class="nav2">
-        <input type="text" placeholder="Search for products" />
-      </div>
-      <div class="nav3">
-        <a th:href="@{/admin/login}">Home Page</a>
-        <a style="color: black;" th:href="@{/admin/addfood}">Add Food Menu</a>
-         <a th:href="@{/admin/viewfood}">View Food</a>
-        <a th:href="@{/admin/foodorder}">All Order</a>
-        <a th:href="@{/admin/profile}" ><i class="fa-regular fa-circle-user"></i></a>
-      </div>
-    </div>
-    <div class="container">
-        <div class="container-sub">
-        <h2>Add Food Item </h2>
-        <form th:action="@{/admin/addfood/save}" method="POST" enctype="multipart/form-data" th:object="${food}">
-          <div class="form-group">
-            <label for="foodname">Food name:</label>
-            <input type="text" id="foodname" name="foodname" 
-            placeholder="Enter food name" th:field="*{name}" required>
-              <p class="error" th:if="${addStatus != null}">[[${addStatus}]]</p>
-
-          </div>
-          
-          <div class="form-group">
-            <label for="price">Price(Rs):</label>
-            <input type="text" id="price" name="price"
-             placeholder="Enter price" th:field="*{price}" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="foodImage">Select image:</label>
-            <input type="file" id="foodImage" name="foodImage" accept="image/*" required>
+        <!-- Left-aligned search container -->
+        <div class="search-container">
+             <span class="title"><a th:href="@{/admin/adminhomepage}">Book Store</a></span>
+            <input type="text" class="search-input" placeholder="Search books">
+            <button class="search-button">Search</button>
         </div>
-        <button type="submit">Add</button>
+        <!-- Right-aligned navigation menu -->
+        <ul>
+             <li><a th:href="@{/admin/viewbook}">Books List</a></li>
+                 <li><a th:href="@{/admin/addbook}">New Book Register</a></li>
+                 <li><a th:href="@{/admin/bookorder}">All Orders</a></li>
+                 <li><a th:href="@{/admin/adminprofile}"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </div>   
+    
+     <div class="container">
+        <h2>Book Register</h2>
+        <form class="BookRegister" th:action="@{/admin/addbook/save}" method="POST" enctype="multipart/form-data" th:object="${book}">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                 <input type="text" id="bookname" name="bookname" th:field="*{name}" required>
+              <p class="error" th:if="${addStatus != null}">[[${addStatus}]]</p>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                 <input type="text" id="bookauthor" name="bookauthor" th:field="*{author}" required>
+              <p class="error" th:if="${addStatus != null}">[[${addStatus}]]</p>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" min="0" th:field="*{price}" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="bookImage">Book Photo:</label>
+                <input type="file" id="bookImage" name="bookImage" accept="image/*" required>
+            </div>
+            <div th:if="${error}" style="color: red;">
+               <p th:text="${error}"></p>
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
         </form>
-      </div>
-      
-      
+    </div>
+
       <script>
   document.getElementById("price").addEventListener("input", function (e) {
     // Allow only numbers and optionally decimals

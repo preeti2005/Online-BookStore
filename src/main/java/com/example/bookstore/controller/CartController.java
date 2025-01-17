@@ -35,7 +35,7 @@ public class CartController {
 	    	
 	    	User user = userService.getByCookieId(resp, req);
 	        cartService.addItemToCart(user, Integer.parseInt(bookId),quantity);
-	        return "redirect:/customer/cart"; // Redirect to the cart page
+	        return "customer/cart"; // Redirect to the cart page
 	    }
 	 // Decrease quantity of an item in the cart
 	    @GetMapping("/customer/cart/decrease/{itemId}")

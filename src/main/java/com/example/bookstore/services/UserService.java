@@ -43,15 +43,15 @@ public class UserService {
 	}
 	
 	//get user by email
-	public User getByPhone(String phone)
+	public User getByEmail(String email)
 	{
-		return userRepository.findByPhone(phone);
+		return userRepository.findByEmail(email);
 	}
 	
-	//check if phone exists
-	public boolean isPhoneExists(String phone)
+	//check if email exists
+	public boolean isEmailExists(String email)
 	{
-		return (this.getByPhone(phone) != null) ? true : false;
+		return (this.getByEmail(email) != null) ? true : false;
 	}
 	
 	//add new user to the database

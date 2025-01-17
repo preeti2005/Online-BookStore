@@ -1,4 +1,3 @@
-
 package com.example.bookstore.entity;
 
 import java.sql.Time;
@@ -10,31 +9,30 @@ import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="order_tbl")
+@Table(name = "order_tbl")
 public class Order {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "book_id", nullable = false)
 	private Book book;
-	
+
 	@Column(nullable = false)
 	private int quantity;
-	
+
 	private double amount;
-		
-	 @CreationTimestamp
-	  private Instant createdAt;
-	 
-	 @ManyToOne
-	 @JoinColumn(name = "user_id", nullable = false)
-	 private User user;
-	 
-	 @Enumerated(value = EnumType.STRING)
-	 private StatusType orderStatus;
-	 
+
+	@CreationTimestamp
+	private Instant createdAt;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@Enumerated(value = EnumType.STRING)
+	private StatusType orderStatus;
 
 	public Book getBook() {
 		return book;
@@ -60,7 +58,6 @@ public class Order {
 		this.amount = amount;
 	}
 
-
 	public User getUser() {
 		return user;
 	}
@@ -84,19 +81,14 @@ public class Order {
 	public Instant getCreatedAt() {
 		return createdAt;
 	}
-	 
+
 	@Override
 	public String toString() {
-	    return "Order{" +
-	            "id=" + id +
-	            ", food=" + (book != null ? book.getId() : "null") + // Assuming Book has an id field
-	            ", quantity=" + quantity +
-	            ", amount=" + amount +
-	            ", createdAt=" + createdAt +
-	            ", user=" + (user != null ? user.getId() : "null") + // Assuming User has an id field
-	            ", orderStatus=" + orderStatus +
-	            '}';
+		return "Order{" + "id=" + id + ", book=" + (book != null ? book.getId() : "null") + // Assuming Book has an id
+																							// field
+				", quantity=" + quantity + ", amount=" + amount + ", createdAt=" + createdAt + ", user="
+				+ (user != null ? user.getId() : "null") + // Assuming User has an id field
+				", orderStatus=" + orderStatus + '}';
 	}
-
 
 }

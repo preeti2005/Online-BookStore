@@ -39,6 +39,11 @@ public class AdminPageController {
 	@Autowired
 	private AuthenticationService authService;
 	
+	@GetMapping("/admin/adminhomepage")
+	public String adminhomepage() {
+	    return "admin/adminhomepage";  
+	}
+
 	//add book page
 	@GetMapping("/admin/addbook")
 	public String showAddBookPage(HttpServletResponse resp,
@@ -49,7 +54,7 @@ public class AdminPageController {
 			throw new OnlyAdminIsAuthorizedException();
 		
 		model.addAttribute("book",new Book());
-		return "admin/bookregister.html";
+		return "admin/bookregister";
 	}
 	
 	//admin login page
@@ -63,23 +68,23 @@ public class AdminPageController {
 			
 			
 	    model.addAttribute("bookList",bookService.getAllBook());
-		return "admin/adminhomepage.html";
+		return "admin/adminhomepage";
 	}
 	
-	//food dashboard
+	//book dashboard
 	@GetMapping("/admin/viewbook")
 	public String showViewBookPage(HttpServletResponse resp,
-            HttpServletRequest req,Model model) throws Exception
+	            HttpServletRequest req, Model model) throws Exception
 	{
-		   //authorization
-			if(authService.identifyUserRole(resp, req) != Role.admin)
-				throw new OnlyAdminIsAuthorizedException();
-		
-		model.addAttribute("bookList",bookService.getAllBook());
-		model.addAttribute("updatedBook",new Book());
-		return "admin/viewbook.html";
+	    if(authService.identifyUserRole(resp, req) != Role.admin)
+	        throw new OnlyAdminIsAuthorizedException();
+
+	    model.addAttribute("bookList", bookService.getAllBook());
+	    model.addAttribute("updatedBook", new Book());
+	    return "admin/viewbook";  
 	}
-	//update food menu
+
+	//update book menu
 	@GetMapping("/admin/updatebook")
 	public String showUpdateBookPage(HttpServletResponse resp,
             HttpServletRequest req) throws Exception
@@ -88,7 +93,7 @@ public class AdminPageController {
 			if(authService.identifyUserRole(resp, req) != Role.admin)
 				throw new OnlyAdminIsAuthorizedException();
 		
-		return "admin/updatebook.html";
+		return "admin/updatebook";
 	}
 
 	//view all foods order
@@ -101,7 +106,7 @@ public class AdminPageController {
 			throw new OnlyAdminIsAuthorizedException();
 		model.addAttribute("orders",orderService.getOrderList());
 		model.addAttribute("statusType",Arrays.asList("pending", "ready", "delivered", "cancelled"));
-		return "/admin/bookorder.html";
+		return "/admin/bookorder";
 	}
 	
 	//update order status
@@ -134,26 +139,23 @@ public class AdminPageController {
 	        return "/admin/bookorder";
 	    }
 	}
-
-
-	  
+	
 	//view admin profile
 	@GetMapping("/admin/adminprofile")
 	public String showAdminProfile(HttpServletResponse resp,
-            HttpServletRequest req,Model model) throws Exception
-	{
-		//authorization
-		if(authService.identifyUserRole(resp, req) != Role.admin)
-			throw new OnlyAdminIsAuthorizedException();
-		
-		User user = userService.getByCookieId(resp,req);
-		if(user != null)
-		{
-		model.addAttribute("user",user);
-		return "admin/adminprofile.html";
-		}
-		else
-		 throw new UserNotFoundException();
+	            HttpServletRequest req, Model model) throws Exception {
+	    if (authService.identifyUserRole(resp, req) != Role.admin) {
+	        throw new OnlyAdminIsAuthorizedException();
+	    }
+	    
+	    User user = userService.getByCookieId(resp, req);
+	    if (user == null) {
+	        throw new UserNotFoundException(); // Ensure this is properly handled
+	    }
+
+	    model.addAttribute("user", user);
+	    return "admin/adminprofile";
 	}
+
 	
 }
